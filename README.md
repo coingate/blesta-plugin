@@ -12,9 +12,9 @@ Please note, that for "Test" mode you **must** generate separate API credentials
 
 ### via FTP
 
-1. Download [coingate-blesta-1.0.0.zip](https://github.com/coingate/blesta-plugin/releases/TODO).
+1. Download [CoinGate-Blesta-v1.0.0.zip](https://github.com/coingate/blesta-plugin/archive/v1.0.0.zip).
 
-2. Unzip and upload **components/** directory to **Blesta's folder** through FTP.
+2. Unzip and upload **components** directory to **Blesta's folder** through FTP.
 
 3. Login to your **Staff Portal** and go to **Payment Gateways**
 
