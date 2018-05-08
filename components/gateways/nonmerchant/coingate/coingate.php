@@ -1,8 +1,8 @@
 <?php
 /**
- * Coingate Payment Gateway
+ * Coingate Cryptocurrency Payment Gateway
  *
- * Allows users to pay with Bitcoins and Altcoins
+ * Allows customers to pay with Bitcoin, Litecoin and Altcoins
  *
  * @package blesta
  * @subpackage blesta.components.gateways.nonmerchant.coingate
