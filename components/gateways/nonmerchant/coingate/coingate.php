@@ -79,25 +79,11 @@ class Coingate extends NonmerchantGateway
     public function editSettings(array $meta)
     {
         $rules = [
-            'app_id'     => [
+            'auth_token' => [
                 'valid' => [
                     'rule'    => "isEmpty",
                     'negate'  => true,
-                    'message' => Language::_("Coingate.!error.api.id.valid", true),
-                ],
-            ],
-            'api_key'    => [
-                'valid' => [
-                    'rule'    => "isEmpty",
-                    'negate'  => true,
-                    'message' => Language::_("Coingate.!error.api.key.valid", true),
-                ],
-            ],
-            'api_secret' => [
-                'valid' => [
-                    'rule'    => "isEmpty",
-                    'negate'  => true,
-                    'message' => Language::_("Coingate.!error.api.secret.valid", true),
+                    'message' => Language::_("Coingate.!error.auth.token.valid", true),
                 ],
             ],
         ];
@@ -111,7 +97,7 @@ class Coingate extends NonmerchantGateway
 
     public function encryptableFields()
     {
-        return ['app_id', 'api_key', 'api_secret'];
+        return ['auth_token'];
     }
 
     public function setMeta(array $meta = null)
@@ -143,24 +129,21 @@ class Coingate extends NonmerchantGateway
 
         $post_params = array(
             'order_id'         => $orderId,
-            'price'            => $this->ifSet($amount),
+            'price_amount'     => $this->ifSet($amount),
             'description'      => $this->ifSet($options['description']),
             'title'            => $company_name->name . " " .$this->ifSet($options['description']),
             'token'            => $token,
-            'currency'         => $this->ifSet($this->currency),
+            'price_currency'   => $this->ifSet($this->currency),
             'receive_currency' => $this->meta['receive_currency'],
             'callback_url'     => $callbackURL,
             'cancel_url'       => $this->ifSet($options['return_url']),
             'success_url'      => $this->ifSet($options['return_url']),
         );
-    
+
         $order = \CoinGate\Merchant\Order::create($post_params, array(), array(
             'environment' => $test_mode,
-            'app_id'      => $this->meta['app_id'],
-            'api_key'     => $this->meta['api_key'],
-            'api_secret'  => $this->meta['api_secret'],
+            'auth_token'  => empty($this->meta['auth_token']) ? $this->meta['api_secret'] : $this->meta['auth_token'],
             'user_agent'  => 'CoinGate - Blesta v' .BLESTA_VERSION . ' Extension v' . $this->getVersion(),
-
         ));
 
         if ($order && $order->payment_url) {
@@ -199,8 +182,8 @@ class Coingate extends NonmerchantGateway
 
         return [
             'client_id'      => $client_id,
-            'amount'         => $this->ifSet($post['price']),
-            'currency'       => $this->ifSet($post['currency']),
+            'amount'         => $this->ifSet($post['price_amount']),
+            'currency'       => $this->ifSet($post['price_currency']),
             'status'         => $status,
             'reference_id'   => null,
             'transaction_id' => $this->ifSet($post['id']),
@@ -210,7 +193,6 @@ class Coingate extends NonmerchantGateway
 
     public function success(array $get, array $post)
     {
-
         $data_parts = explode('@', $this->ifSet($post['order_id']), 2);
 
         $client_id = $data_parts[0];
@@ -224,6 +206,7 @@ class Coingate extends NonmerchantGateway
         $orderId = $post['order_id'];
         $token = md5($orderId);
 
+
         if (empty($get['token']) || strcmp($get['token'], $token) !== 0) {
                 $error_message = 'CoinGate Token: ' . $get['token'] . ' is not valid';
                 $this->log($this->ifSet($_SERVER['REQUEST_URI']), $error_message, "output", true);
@@ -234,8 +217,8 @@ class Coingate extends NonmerchantGateway
 
         return [
             'client_id'      => $client_id,
-            'amount'         => $this->ifSet($post['price']),
-            'currency'       => $this->ifSet($post['currency']),
+            'amount'         => $this->ifSet($post['price_amount']),
+            'currency'       => $this->ifSet($post['price_currency']),
             'status'         => $status,
             'transaction_id' => $this->ifSet($post['id']),
             'invoices'       => $this->unserializeInvoices($invoices),
@@ -302,11 +285,9 @@ class Coingate extends NonmerchantGateway
         $test_mode = $this->coingateEnvironment();
 
         $order = \CoinGate\Merchant\Order::find($id, array(), array(
-            'environment' => $test_mode,
-            'app_id'      => $this->meta['app_id'],
-            'api_key'     => $this->meta['api_key'],
-            'api_secret'  => $this->meta['api_secret'],
-            'user_agent'  => 'CoinGate - Blesta v' .BLESTA_VERSION . ' Extension v' . $this->getVersion(),
+          'environment' => $test_mode,
+          'auth_token'  => empty($this->meta['auth_token']) ? $this->meta['api_secret'] : $this->meta['auth_token'],
+          'user_agent'  => 'CoinGate - Blesta v' . BLESTA_VERSION . ' Extension v' . $this->getVersion(),
         ));
 
         return $order;

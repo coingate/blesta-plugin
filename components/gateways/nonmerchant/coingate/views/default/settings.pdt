@@ -1,20 +1,8 @@
 <ul>
 	<li>
 		<?php
-        $this->Form->label($this->_('Coingate.app_id', true), 'app_id');
-        $this->Form->fieldText('app_id', $this->Html->ifSet($meta['app_id']), ['id'=>'app_id']);
-        ?>
-	</li>
-	<li>
-		<?php
-        $this->Form->label($this->_('Coingate.api_key', true), 'api_key');
-        $this->Form->fieldText('api_key', $this->Html->ifSet($meta['api_key']), ['id'=>'api_key']);
-        ?>
-	</li>
-	<li>
-		<?php
-        $this->Form->label($this->_('Coingate.api_secret', true), 'api_secret');
-        $this->Form->fieldText('api_secret', $this->Html->ifSet($meta['api_secret']), ['id'=>'api_secret']);
+        $this->Form->label($this->_('Coingate.auth_token', true), 'auth_token');
+        $this->Form->fieldText('auth_token', $this->Html->ifSet($meta['auth_token']), ['id'=>'auth_token']);
         ?>
 	</li>
 	<li>

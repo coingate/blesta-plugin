@@ -1,9 +1,7 @@
 <?php
 
 $lang['Coingate.name'] = 'Cryptocurrency Payments via CoinGate';
-$lang['Coingate.app_id'] = 'APP ID';
-$lang['Coingate.api_key'] = 'API Key';
-$lang['Coingate.api_secret'] = 'API Secret';
+$lang['Coingate.auth_token'] = 'API Auth Token';
 $lang['Coingate.coingate_environment'] = 'CoinGate Environment';
 $lang['Coingate.environment.sandbox'] = 'sandbox';
 $lang['Coingate.environment.live'] = 'live';
@@ -15,9 +13,7 @@ $lang['Coingate.receive_currency.usd'] = 'U.S. Dollars $';
 $lang['Coingate.receive_currency.btc'] = 'Bitcoin ฿';
 $lang['Coingate.receive_currency.eur'] = 'Euros €';
 // Error
-$lang['Coingate.!error.app.id.valid'] = 'APP ID cannot be blank';
-$lang['Coingate.!error.api.key.valid'] = 'API Key cannot be blank';
-$lang['Coingate.!error.api.secret.valid'] = 'API Secret cannot be blank';
+$lang['Coingate.!error.auth.token.valid'] = 'API Auth Token cannot be blank';
 $lang['Coingate.!error.payment.invalid'] = 'The transaction is invalid and could not be processed';
 $lang['Coingate.!error.payment.canceled'] = 'The transaction is canceled and could not be processed';
 $lang['Coingate.!error.payment.expired'] = 'The transaction has expired and could not be processed';
