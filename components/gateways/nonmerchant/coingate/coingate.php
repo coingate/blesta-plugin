@@ -15,7 +15,7 @@
  */
 class Coingate extends NonmerchantGateway
 {
-    private static $version = "1.0.0";
+    private static $version = "1.0.1";
     private static $authors = [['name' => 'Coingate', 'url' => 'https://coingate.com']];
     private $meta;
     public function __construct()
