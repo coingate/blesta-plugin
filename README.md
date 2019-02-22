@@ -12,15 +12,15 @@ Please note, that for "Test" mode you **must** generate separate API credentials
 
 ### via FTP
 
-1. Download [CoinGate-Blesta-v1.0.0.zip](https://github.com/coingate/blesta-plugin/archive/v1.0.0.zip).
+1. Download [CoinGate-Blesta-v1.0.0.zip](https://github.com/coingate/blesta-plugin/archive/v1.0.2.zip).
 
 2. Unzip and upload **components** directory to **Blesta's folder** through FTP.
 
 3. Login to your **Staff Portal** and go to **Payment Gateways**
 
-5. Go to **Available** Tab and press **Install** next to **CoinGate** Plugin
+5. Go to **Available** Tab and press **Install** next to **CoinGate** Plugin and fill in your *API Authentication Token* (https://support.coingate.com/en/42/how-can-i-create-coingate-api-credentials) from CoinGate, choose *CoinGate Environment* depending on where you created your API credentials(https://coingate.com - Live and https://sandbox.coingate.com - Sandbox) and set your *Receive Currency*
 
-6. Enter [API Credentials](http://support.coingate.com/knowledge_base/topics/how-can-i-create-coingate-api-credentials) (*App ID*, *Api Key*, *Api Secret*) data to Blesta-CoinGate Plugin Settings: *Staff Portal » Settings » Payment Gateways » Installed* click on **Manage**.
+6. Go to :*Staff Portal » Settings » Payment Gateways » Installed* click on **Manage** and 
 
 7. Don't forget to add **CoinGate** as a payment method in your **Order Forms** in *Staff Portal » Packages » Order Forms*.
 
