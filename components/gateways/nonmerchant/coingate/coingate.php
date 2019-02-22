@@ -15,7 +15,7 @@
  */
 class Coingate extends NonmerchantGateway
 {
-    private static $version = "1.0.1";
+    private static $version = "1.0.2";
     private static $authors = [['name' => 'Coingate', 'url' => 'https://coingate.com']];
     private $meta;
     public function __construct()
@@ -44,7 +44,9 @@ class Coingate extends NonmerchantGateway
 
     public function getCurrencies()
     {
-        return array("EUR", "GBP", "USD", "BTC", "PLN", "CZK", "SEK", "NOK", "DKK", "CHF", "ZAR", "AUD", "JPY", "BRL", "CAD", "CNY", "HKD", "HUF", "INR", "RUB", "ILS", "MYR", "MXN", "SGD", "RON", "VEF", "IDR", "PHP", "ARS", "THB", "NGN", "COP", "PKR", "AED", "UAH", "BGN");
+        return array("EUR", "GBP", "USD", "BTC", "PLN", "CZK", "SEK", "NOK", "DKK", "CHF", "ZAR", "AUD", 
+        		"JPY", "BRL", "CAD", "CNY", "HKD", "HUF", "INR", "RUB", "ILS", "MYR", "MXN", "SGD", 
+        		"RON", "VEF", "IDR", "PHP", "ARS", "THB", "NGN", "COP", "PKR", "AED", "UAH", "BGN");
     }
 
     public function setCurrency($currency)
@@ -60,8 +62,10 @@ class Coingate extends NonmerchantGateway
 
         $receive_currency = [
             'BTC' => Language::_('Coingate.receive_currency.btc', true),
+            'USDT' => Language::_('Coingate.receive_currency.usdt', true),
             'EUR' => Language::_('Coingate.receive_currency.eur', true),
             'USD' => Language::_('Coingate.receive_currency.usd', true),
+            'DO_NOT_CONVERT' => Language::_('Coingate.receive_currency.DO_NOT_CONVERT', true),
         ];
 
         $coingate_environment = [
